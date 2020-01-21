@@ -1,0 +1,21 @@
+const express = require('express');
+
+const routes = express.Router();
+
+const DevController = require('./controllers/DevController')
+const LikeController = require('./controllers/LikeController')
+const DislikeController = require('./controllers/DislikeController')
+
+// Ao utilizar server, posso utilizar qualquer método HTTP (GET, POST, PUT, DELETE)
+// routes.get('/', (req, res) => {
+
+//     return res.json({ message: `Olá ${req.query.name}` });
+// });
+
+routes.get('/devs', DevController.index)
+
+routes.post('/devs', DevController.store)
+routes.post('/devs/:devId/dislikes', DislikeController.store)
+routes.post('/devs/:devId/likes', LikeController.store)
+
+module.exports = routes;
